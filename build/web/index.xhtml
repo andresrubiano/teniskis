@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>TennisKISS</title>
+        <meta name="author" content="The Author"></meta>
+        <style type="text/css">
+            p.miniSection {
+                height: 86px;
+            }
+            progress.rount2 {
+                float: right;
+                margin-top: -68px;
+                margin-right: 46px;
+            }
+            progress[value] {
+                /* Reset the default appearance */
+                -webkit-appearance: none;
+                appearance: none;
+
+                width: 133px;
+                height: 15px;
+            }
+        </style>
+    </h:head>
+    <h:body  style="background-color: #edefe2">
+        <b:navBar brand="TennisKISS" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="#"></b:navLink>
+                <b:navLink value="Nosotros" href="#about"></b:navLink>
+                <b:navLink value="Contáctenos" href="#contact"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <h:form>
+            <b:carousel id="parque" style="width:100%">
+                <b:carouselItem>
+                    <img src="carousel/4.jpg" alt="Valladolid" />
+                </b:carouselItem>
+                <b:carouselItem>
+                    <img src="carousel/2.jpg" alt="Valladolid" />
+                </b:carouselItem>
+                <b:carouselItem>
+                    <img src="carousel/3.jpg" alt="Valladolid" />
+                </b:carouselItem>
+            </b:carousel>
+        </h:form>
+
+        <b:container>
+            <b:row>
+                <br></br>
+            </b:row>
+            <b:row>
+                
+                <b:column col-sm="6">
+                    <b:panel>
+                        <h2>Registro participantes</h2>
+                        <b:column col-sm="6">
+                            <p class="miniSection">Sí desea ser participante de las competencias independientemente de su rol en ella deberá registrarse en este apartado. </p>
+                        </b:column>
+                        <b:column col-sm="6">
+                            <img src="carousel/usuario.png" alt="Registro Usuario" width="135"/>
+                        </b:column>
+                        
+                        <p><b:button outcome="registro.xhtml" value="Regístrese »" look="info"/></p>
+                    </b:panel>
+                </b:column>
+
+                <b:column col-sm="6">
+                    <b:panel>
+                        <h2>Ranking</h2>
+                        <b:column col-sm="6">
+                            <p class="miniSection">Ver el ranking de los participantes a este evento. </p>
+                        </b:column>
+                        <b:column col-sm="6">
+                            <img src="carousel/clasificacion.png" alt="Ranking" width="135"/>
+                        </b:column>
+                        
+                        <p><b:button outcome="" value="Más detalles »" look="info"/></p>
+                    </b:panel>
+                </b:column>
+
+            </b:row>
+        </b:container>
+
+    </h:body>
+
+</html>

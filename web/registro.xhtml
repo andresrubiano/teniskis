@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <style type="text/css">
+            body{
+                background-image: url(carousel/1_1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <b:navBar brand="TennisKISS" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="index.xhtml"></b:navLink>
+                <b:navLink value="Nosotros" href="#about"></b:navLink>
+                <b:navLink value="Contáctenos" href="#contact"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <br></br>
+        <br></br>
+        <br></br>
+
+        <b:container>
+            <h:form>
+                <b:panel col-sm="12">
+                    <div class="col-sm-6">
+                        <f:facet name="heading">
+
+                            <h:outputText value="Registro" />
+                            <b:badge style="margin-left:10px; background-color:#5cb85c" value="Usuario"  />
+                        </f:facet>
+
+                        <b:form>
+                            <b:carousel id="wizard" styleClass="wizardPseudoClass"
+                                        style="width:100%; "
+                                        startAnimation="false"
+                                        showIndicators="false"
+                                        wrap="false">
+                                <b:carouselItem style="width:100%; height:400px">
+                                    <b:panel title="Step 1" look="primary">
+                                        <b:inputText label="First name" />
+                                        <b:inputText label="Last name"  />
+                                    </b:panel>
+                                </b:carouselItem>
+                                <b:carouselItem style="width:100%;height:400px">
+                                    <b:panel title="Step 2" look="primary  ">
+                                        <b:inputText label="Street"  />
+                                    </b:panel>
+                                </b:carouselItem>
+                                <b:carouselItem style="width:100%;height:400px">
+                                    <b:panel title="Step 3" look="primary">
+                                        <b:inputText label="Zip code"  />
+                                        <b:inputText label="City"  />
+                                    </b:panel>
+                                </b:carouselItem>
+                                 <b:carouselItem style="width:100%;height:400px">
+                                    <b:panel title="Step 3" look="primary">
+                                        <b:commandButton value="Guardar" style="width: 100%" look="success"></b:commandButton>
+                                    </b:panel>
+                                </b:carouselItem>
+                                <b:carouselControl direction="right" >
+                                    <b:button value="Previous step"
+                                              onclick="$('.wizardPseudoClass').carousel('prev');$('.wizardPseudoClass').carousel('pause');"
+                                              look="info" />
+                                </b:carouselControl>
+                                <b:carouselControl direction="left">
+                                    <b:button value="Next step" style="position:absolute;right:0px"
+                                              onclick="$('.wizardPseudoClass').carousel('next');$('.wizardPseudoClass').carousel('pause');"
+                                              look="success" />
+                                </b:carouselControl>
+                            </b:carousel>
+                        </b:form>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <img src="carousel/usuario.png" alt=""/>
+                    </div>
+                </b:panel>
+
+            </h:form>
+        </b:container>
+    </h:body>
+</html>
