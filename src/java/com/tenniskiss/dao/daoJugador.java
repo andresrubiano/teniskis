@@ -7,13 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 public class daoJugador extends Jugador {
 
     boolean m = false;
- private ArrayList<Jugador> listaJugadores=new ArrayList<>();
+    private ArrayList<Jugador> listaJugadores = new ArrayList<>();
+
     public void guardarJugador() {
 
         String query = "INSERT INTO `Jugador` (`documento`, `Nombre`, `apellido`, `nacionalidad`, `RankingIndividual`, `RankingDoble`, `Evento`) VALUES ";
@@ -24,17 +27,20 @@ public class daoJugador extends Jugador {
         boolean b = conexion.CUD(sql);
         if (b) {
             b = true;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Atención", "No se pudo guarda los datos, intente nuevamente"));
         } else {
             vaciar();
             b = false;
+           
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardados", "Datos registrados satisfactoriamente."));
+    
+         
         }
         conexion.cerrarConexion();
 
     }
 
-    public void cosultaRanking() {
-        
-    }
+   
 
     private void vaciar() {
         setApellido(null);
@@ -47,19 +53,18 @@ public class daoJugador extends Jugador {
     }
 
     public ArrayList<Jugador> getListaJugadores() {
-        String sql="Select nombre, apellido, RankingIndividual, RankingDoble from jugador order by 3 asc";
+        String sql = "Select nombre, apellido, RankingIndividual, RankingDoble from jugador order by 3 asc";
         Conexion conexion = new Conexion();
-        ResultSet r= conexion.consultar(sql);
-        
-       
+        ResultSet r = conexion.consultar(sql);
+
         try {
             while (r.next()) {
-               Jugador j=new Jugador();
-               j.setNombre(r.getString(1));
-               j.setApellido(r.getString(2));
-               j.setRankingIndividual(r.getInt(3));
-               j.setRankingDobles(r.getInt(4));
-               listaJugadores.add(j);
+                Jugador j = new Jugador();
+                j.setNombre(r.getString(1));
+                j.setApellido(r.getString(2));
+                j.setRankingIndividual(r.getInt(3));
+                j.setRankingDobles(r.getInt(4));
+                listaJugadores.add(j);
             }
         } catch (SQLException ex) {
             Logger.getLogger(daoJugador.class.getName()).log(Level.SEVERE, null, ex);

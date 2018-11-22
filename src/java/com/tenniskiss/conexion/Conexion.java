@@ -39,9 +39,11 @@ public void cerrarConexion(){
     public boolean CUD(String sql){
         boolean b=false;
         try {
-          b=this.getStatement().execute(sql);
+          this.getStatement().execute(sql);
+          b=false;
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            b=true;
         }
         return b;
     }
