@@ -43,24 +43,31 @@
                                         showIndicators="false"
                                         wrap="false">
                                 <b:carouselItem style="width:100%; height:400px">
-                                    <b:panel title="Step 1" look="primary">
-                                        <b:inputText label="First name" />
-                                        <b:inputText label="Last name"  />
+                                    <b:panel title="Datos de identificación" look="success">
+                                        <b:inputText label="Documento" type="number" />
+                                        <b:inputText label="Nombre"  />
+                                        <b:inputText label="Apellido" />
+                                       
                                     </b:panel>
                                 </b:carouselItem>
                                 <b:carouselItem style="width:100%;height:400px">
-                                    <b:panel title="Step 2" look="primary  ">
-                                        <b:inputText label="Street"  />
+                                    <b:panel title="Ranking" look="success  ">
+                                        <b:inputText label="Nacionalidad"  />
+                                        <b:inputText label="Ranking Individual" type="number"  />
+                                        <b:inputText label="Ranking Dobles" type="number" />
+                                        
                                     </b:panel>
                                 </b:carouselItem>
                                 <b:carouselItem style="width:100%;height:400px">
-                                    <b:panel title="Step 3" look="primary">
-                                        <b:inputText label="Zip code"  />
-                                        <b:inputText label="City"  />
+                                    <b:panel title="Evento a participar" look="success">
+                                       
+                                        <b:inputText label="Individual" type="checkbox" />
+                                        <b:inputText label="Dobles" type="checkbox" />
+                                        
                                     </b:panel>
                                 </b:carouselItem>
                                  <b:carouselItem style="width:100%;height:400px">
-                                    <b:panel title="Step 3" look="primary">
+                                    <b:panel title="Step 3" look="success">
                                         <b:commandButton value="Guardar" style="width: 100%" look="success"></b:commandButton>
                                     </b:panel>
                                 </b:carouselItem>
