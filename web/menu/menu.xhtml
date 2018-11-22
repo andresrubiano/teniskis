@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <style type="text/css">
+            body{
+                background-image: url(carousel/1_1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <b:navBar brand="TennisKiss" brandHref="#" fluid="true" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="index.xhtml"></b:navLink>
+                <b:navLink value="Nosotros" href="nosotros.xthml"></b:navLink>
+                <b:dropMenu value="Más información" iconAwesome="">
+                    <b:navLink value="Action" href="#"></b:navLink>
+                    <b:navLink value="Another action" href="#"></b:navLink>
+                    <b:navLink value="Something else here" href="#"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <b:navLink header="Nav header"></b:navLink>
+                    <b:navLink value="Separated link" href="#"></b:navLink>
+                    <b:dropMenu value="Nested submenu" iconAwesome="birthday-cake" iconAlign="right">
+                        <b:navLink value="You can nest menus" href="#"></b:navLink>
+                        <b:dropMenu value="Nested sub-submenu">
+                            <b:navLink value="... as deep as ..." href="#"></b:navLink>
+                            <b:dropMenu value="Nested sub-sub-submenu">
+                                <b:navLink value="... you want!" href="#"></b:navLink>
+                            </b:dropMenu>
+                        </b:dropMenu>
+
+                    </b:dropMenu>
+                    <b:navLink value="One more separated link" href="#"></b:navLink>
+                </b:dropMenu>
+            </b:navbarLinks>
+
+            <!-- Following line is needed for TBS 3.0.1 (panel content overflow issue) -->
+            <b:navbarLinks pull="right"><b:navLink value="    " href="#"></b:navLink></b:navbarLinks>
+            <b:navbarLinks pull="right" styleClass="hidden-xs">
+                <b:column span="3">
+                    <a id="atrigger" class="btn btn-primary btn-lg" href="#amodal" data-toggle="modal">Login</a>
+                </b:column>
+
+            </b:navbarLinks>
+        </b:navBar>
+    </h:body>
+</html>
