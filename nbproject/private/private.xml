@@ -5,9 +5,9 @@
         <group>
             <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/web/index.xhtml</file>
             <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/web/ranking.xhtml</file>
+            <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/web/menu/menu.xhtml</file>
             <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/src/java/com/tenniskiss/modelo/Jugador.java</file>
             <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/src/java/com/tenniskiss/dao/daoJugador.java</file>
-            <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/src/java/com/tenniskiss/conexion/Conexion.java</file>
             <file>file:/C:/Users/Luis%20Moreno/Documents/GitJhonMoreno/teniskis/web/registro.xhtml</file>
         </group>
     </open-files>
