@@ -2,6 +2,7 @@ package com.tenniskiss.dao;
 
 import com.tenniskiss.conexion.Conexion;
 import com.tenniskiss.modelo.Jugador;
+import com.tenniskiss.modelo.Torneo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,35 +18,92 @@ public class daoJugador extends Jugador {
     boolean m = false;
     private ArrayList<Jugador> listaJugadores = new ArrayList<>();
 
-    public void guardarJugador() {
-
-        String query = "INSERT INTO `Jugador` (`documento`, `Nombre`, `apellido`, `nacionalidad`, `RankingIndividual`, `RankingDoble`, `Evento`) VALUES ";
-        String values = "('" + getDocumento() + "', '" + getNombre() + "', '" + getApellido() + "', '" + getNacionalidad() + "', '" + getRankingIndividual() + "', '" + getRankingDobles() + "', '" + getEvento() + "');";
-        String sql = query + values;
-
+    public void guardarUsuario() {
         Conexion conexion = new Conexion();
+        String sql = "insert into usuario values('" + getDocumento() + "','" + getNombre() + "','" + getApellido() + "','" + getNacionalidad() + "','" + getSexo() + "')";
         boolean b = conexion.CUD(sql);
+        conexion.cerrarConexion();
         if (b) {
             b = true;
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Atención", "No se pudo guarda los datos, intente nuevamente"));
+            mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al guardar el usuario");
         } else {
-            vaciar();
             b = false;
-           
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Guardados", "Datos registrados satisfactoriamente."));
-    
-         
+            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el usuario");
         }
-        conexion.cerrarConexion();
-
     }
 
-   
+    public void mensaje(FacesMessage.Severity x, String tituloMsj, String msj) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(x, tituloMsj, msj));
+    }
+
+    public void guardarJugador() {
+        guardarUsuario();
+        Conexion conexion = new Conexion();
+
+        String sql = "insert into jugador values ('" + getDocumento() + "', '" + getRankingIndividual() + "', '" + getRankingDobles() + "')";
+        boolean b = conexion.CUD(sql);
+        conexion.cerrarConexion();
+        if (b) {
+            b = true;
+            mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al guardar el jugador");
+        } else {
+            b = false;
+            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el jugador");
+        }
+        //guardarJugadorEnTorneo();
+    }
+    public ArrayList<Torneo> consultarTorneos(){
+        ArrayList<Torneo> listaTorneo=new ArrayList<>();
+        Conexion conexion = new Conexion();
+        String sql = "SELECT nombre, fecha_inicio, fecha_fin FROM torneo";
+        ResultSet r=conexion.consultar(sql);
+        try {
+            while (r.next()) {
+                Torneo t=new Torneo();
+                t.setNombre(r.getString(1));
+                t.setFechaInicio(r.getString(2));
+                t.setFechaFin(r.getString(2));
+                listaTorneo.add(t);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(daoJugador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conexion.cerrarConexion();
+        return listaTorneo;
+    }
+
+
+    public long getTorneo() {
+        return torneo;
+    }
+
+    public void setTorneo(long torneo) {
+        this.torneo = torneo;
+    }
+
+
+    long torneo;
+
+    public void guardarJugadorEnTorneo() {
+        Conexion conexion = new Conexion();
+
+        String sql = "insert into jugador_x_torneo values (null,'"+getDocumento()+"','"+getTorneo()+"')";
+        boolean b = conexion.CUD(sql);
+        conexion.cerrarConexion();
+        if (b) {
+            b = true;
+            mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al registrarse al torneo");
+        } else {
+            b = false;
+            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el registro del torneo");
+        }
+        vaciar();
+    }
 
     private void vaciar() {
         setApellido(null);
         setDocumento(0);
-        setEvento(null);
+        setTorneo(0);
         setNacionalidad(null);
         setNombre(null);
         setRankingDobles(0);
@@ -53,7 +111,7 @@ public class daoJugador extends Jugador {
     }
 
     public ArrayList<Jugador> getListaJugadores() {
-        String sql = "Select nombre, apellido, RankingIndividual, RankingDoble from jugador order by 3 asc";
+        String sql = "Select nombre, apellido, RankingIndividual, RankingDoble from usuario u inner join jugador j on u.documento=j.documento order by 3 asc";
         Conexion conexion = new Conexion();
         ResultSet r = conexion.consultar(sql);
 
@@ -76,4 +134,5 @@ public class daoJugador extends Jugador {
     public void setListaJugadores(ArrayList<Jugador> listaJugadores) {
         this.listaJugadores = listaJugadores;
     }
+
 }
