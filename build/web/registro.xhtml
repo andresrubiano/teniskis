@@ -43,9 +43,9 @@
                                         wrap="false">
                                 <b:carouselItem style="width:100%; height:400px">
                                     <b:panel title="Datos de identificación" look="success">
-                                        <b:inputText label="Documento" type="number" value="#{daoJugador.documento}" />
-                                        <b:inputText label="Nombre"  value="#{daoJugador.nombre}" />
-                                        <b:inputText label="Apellido" value="#{daoJugador.apellido}" />
+                                        <b:inputText label="Documento" type="number" value="#{daoJugador.documento}" required="true" />
+                                        <b:inputText label="Nombre"  value="#{daoJugador.nombre}" required="true"/>
+                                        <b:inputText label="Apellido" value="#{daoJugador.apellido}" required="true"/>
                                         <b:selectOneMenu value="#{daoJugador.sexo}"  required="true" label="Seleccione su sexo"    >
                                             <f:selectItem itemLabel="(Seleccione una opción)" itemValue="" />
                                             <f:selectItem itemLabel="Masculino" itemValue="M" />
@@ -57,9 +57,9 @@
                                 </b:carouselItem>
                                 <b:carouselItem style="width:100%;height:400px">
                                     <b:panel title="Ranking" look="success  ">
-                                        <b:inputText label="Nacionalidad"  value="#{daoJugador.nacionalidad}" />
-                                        <b:inputText label="Ranking Individual" type="number"  value="#{daoJugador.rankingIndividual}" />
-                                        <b:inputText label="Ranking Dobles" type="number"  value="#{daoJugador.rankingDobles}" />
+                                        <b:inputText label="Nacionalidad"  value="#{daoJugador.nacionalidad}"  required="true"/>
+                                        <b:inputText label="Ranking Individual" type="number"  value="#{daoJugador.rankingIndividual}" required="true" />
+                                        <b:inputText label="Ranking Dobles" type="number"  value="#{daoJugador.rankingDobles}" required="true"/>
 
                                     </b:panel>
                                 </b:carouselItem>
