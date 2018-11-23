@@ -28,7 +28,7 @@ public class daoJugador extends Jugador {
             mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al guardar el usuario");
         } else {
             b = false;
-            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el usuario");
+            mensaje(FacesMessage.SEVERITY_INFO, "Excelente", "Se ha guardado el usuario");
         }
     }
 
@@ -48,7 +48,7 @@ public class daoJugador extends Jugador {
             mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al guardar el jugador");
         } else {
             b = false;
-            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el jugador");
+            mensaje(FacesMessage.SEVERITY_INFO, "Excelente", "Se ha guardado el jugador");
         }
         //guardarJugadorEnTorneo();
     }
@@ -95,7 +95,7 @@ public class daoJugador extends Jugador {
             mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al registrarse al torneo");
         } else {
             b = false;
-            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el registro del torneo");
+            mensaje(FacesMessage.SEVERITY_INFO, "Excelente", "Se ha guardado el registro del torneo");
         }
         vaciar();
     }
@@ -111,7 +111,7 @@ public class daoJugador extends Jugador {
     }
 
     public ArrayList<Jugador> getListaJugadores() {
-        String sql = "Select nombre, apellido, RankingIndividual, RankingDoble from usuario u inner join jugador j on u.documento=j.documento order by 3 asc";
+        String sql = "Select nombre, apellido, RankingIndividual, RankingDoble, nacionalidad from usuario u inner join jugador j on u.documento=j.documento order by 3 asc";
         Conexion conexion = new Conexion();
         ResultSet r = conexion.consultar(sql);
 
@@ -122,6 +122,7 @@ public class daoJugador extends Jugador {
                 j.setApellido(r.getString(2));
                 j.setRankingIndividual(r.getInt(3));
                 j.setRankingDobles(r.getInt(4));
+                j.setNacionalidad(r.getString(5));
                 listaJugadores.add(j);
             }
         } catch (SQLException ex) {

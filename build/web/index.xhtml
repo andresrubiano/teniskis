@@ -25,12 +25,18 @@
                 width: 133px;
                 height: 15px;
             }
+            body{
+                background-image: url(carousel/1_1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         </style>
     </h:head>
-    <h:body  style="background-color: #edefe2">
-        <ui:include src="menu/menu.xhtml">          
-        </ui:include>
-        <h:form>
+    <h:body  >
+     
+        <ui:include src="menu/menu.xhtml"></ui:include>
+        
+        <h:form id="carousel">
             <b:carousel id="parque" style="width:100%;">
                 <b:carouselItem>
                     <img src="carousel/4.jpg" alt="Valladolid" />
