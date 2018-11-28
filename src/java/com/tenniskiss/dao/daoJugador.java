@@ -22,14 +22,16 @@ public class daoJugador extends Jugador {
         Conexion conexion = new Conexion();
         String sql = "insert into usuario values('" + getDocumento() + "','" + getNombre() + "','" + getApellido() + "','" + getNacionalidad() + "','" + getSexo() + "')";
         boolean b = conexion.CUD(sql);
+        
         conexion.cerrarConexion();
         if (b) {
             b = true;
             mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al guardar el usuario");
         } else {
             b = false;
-            mensaje(FacesMessage.SEVERITY_INFO, "Excelente", "Se ha guardado el usuario");
+            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el usuario");
         }
+        
     }
 
     public void mensaje(FacesMessage.Severity x, String tituloMsj, String msj) {
@@ -42,15 +44,17 @@ public class daoJugador extends Jugador {
 
         String sql = "insert into jugador values ('" + getDocumento() + "', '" + getRankingIndividual() + "', '" + getRankingDobles() + "')";
         boolean b = conexion.CUD(sql);
+      
         conexion.cerrarConexion();
         if (b) {
             b = true;
             mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al guardar el jugador");
         } else {
             b = false;
-            mensaje(FacesMessage.SEVERITY_INFO, "Excelente", "Se ha guardado el jugador");
+            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el jugador");
         }
-        //guardarJugadorEnTorneo();
+        
+        guardarJugadorEnTorneo();
     }
     public ArrayList<Torneo> consultarTorneos(){
         ArrayList<Torneo> listaTorneo=new ArrayList<>();
@@ -87,7 +91,7 @@ public class daoJugador extends Jugador {
     public void guardarJugadorEnTorneo() {
         Conexion conexion = new Conexion();
 
-        String sql = "insert into jugador_x_torneo values (null,'"+getDocumento()+"','"+getTorneo()+"')";
+        String sql = "insert into jugador_x_torneo values  (null, '"+getTorneo()+"', '"+getDocumento()+"');";
         boolean b = conexion.CUD(sql);
         conexion.cerrarConexion();
         if (b) {
@@ -95,7 +99,7 @@ public class daoJugador extends Jugador {
             mensaje(FacesMessage.SEVERITY_ERROR, "Error", "Se ha generado un error al registrarse al torneo");
         } else {
             b = false;
-            mensaje(FacesMessage.SEVERITY_INFO, "Excelente", "Se ha guardado el registro del torneo");
+            mensaje(FacesMessage.SEVERITY_INFO, "Información", "Se ha guardado el registro del torneo");
         }
         vaciar();
     }

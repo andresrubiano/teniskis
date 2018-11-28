@@ -18,25 +18,19 @@
                 margin-right: 46px;
             }
             progress[value] {
-                /* Reset the default appearance */
+
                 -webkit-appearance: none;
                 appearance: none;
-
                 width: 133px;
                 height: 15px;
             }
-            body{
-                background-image: url(carousel/1_1.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
         </style>
     </h:head>
-    <h:body  >
-     
-        <ui:include src="menu/menu.xhtml"></ui:include>
-        
-       
+    <h:body  style="background-color: #edefe2">
+        <ui:include src="menu/menu.xhtml">          
+        </ui:include>
+
+
         <b:container>
 
             <b:row>
@@ -70,8 +64,85 @@
                 </b:column>
 
             </b:row>
+            <b:row>
+
+                <b:column col-sm="6">
+                    <b:panel>
+                        <h2>Registro de torneos</h2>
+                        <b:column col-sm="6">
+
+                            <h:form>
+                                <b:growl id="growlSpecific" placementFrom="top" show-detail="true"
+                                     global-only="false"
+                                     show-summary="true" allow-dismiss="true"
+                                     animation-enter="animated bounceInDown"
+                                     animation-exit="animated flipOutX"
+                                     escape="true" />
+                                <b:panel title="Crear torneo" look="success">
+
+                                    <b:inputText label="Nombre del torneo" type="text" value="#{daoTorneo.nombre}" />
+                                    <b:inputText label="Fecha inicio" type="date" value="#{daoTorneo.fechaInicio}" />
+                                    <b:inputText label="Fecha fin " type="date" value="#{daoTorneo.fechaFin}" />
+                                    <b:commandButton action="#{daoTorneo.crearTorneo()}" value="Guardar torneo"></b:commandButton>
+                                </b:panel>
+                            </h:form>
+                        </b:column>
+                        <b:column col-sm="6">
+                            <img src="carousel/evento.png" alt="Evento" width="135"/>
+                        </b:column>
+
+                        
+                    </b:panel>
+                </b:column>
+
+                <b:column col-sm="6">
+                    <b:panel>
+                        <h2></h2>
+                        <h:form>
+                            <b:panel col-sm="12">
+                                <b:dataTable value="#{daoTorneo.torneos}"
+                                             var="t" page-length-menu="5">
+                                    <b:dataTableColumn value="#{t.idTorneo}" label=" # Torneo"/>
+                                    <b:dataTableColumn value="#{t.nombre}" label="Nombre del torneo"/>
+                                    <b:dataTableColumn value="#{t.fechaInicio}" order="asc" label="Fecha Inicio" />
+                                    <b:dataTableColumn value="#{t.fechaFin}" label="Fecha fin" />
+                              </b:dataTable>
+                            </b:panel>
+                        </h:form>
+
+
+                    </b:panel>
+                </b:column>
+
+            </b:row>
+            
+             <b:row>
+
+                <b:column col-sm="12">
+                  
+                    <b:panel>
+                        <h2>Jugadores registrados a X torneo</h2>
+                        <h:form>
+                            <b:panel col-sm="12">
+                                <b:dataTable value="#{daoTorneo.usuarioPorTorneo}"
+                                             var="t" page-length-menu="5">
+                                    <b:dataTableColumn value="#{t.nombreJugador}" label=" Nombre Jugador"/>
+                                    <b:dataTableColumn value="#{t.apellidoJugador}" label="Apellido del torneo"/>
+                                    <b:dataTableColumn value="#{t.torneoIdtorneo}" label="# Torneo"/>
+                                    <b:dataTableColumn value="#{t.nombreTorneo}" label="Nombre del torneo"/>
+                                    <b:dataTableColumn value="#{t.fechaInicio}" order="asc" label="Fecha Inicio" />
+                                    <b:dataTableColumn value="#{t.fechaFin}" label="Fecha fin" />
+                              </b:dataTable>
+                            </b:panel>
+                        </h:form>
+
+
+                    </b:panel>
+                </b:column>
+
+            </b:row>
         </b:container>
-       
+
     </h:body>
 
 </html>

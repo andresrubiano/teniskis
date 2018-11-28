@@ -5,26 +5,32 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-       
+        <style type="text/css">
+            body{
+                background-image: url(carousel/1_1.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
     </h:head>
     <h:body>
         <b:navBar brand="TennisKiss" brandHref="#" fluid="true" inverse="true">
             <b:navbarLinks>
-                <b:navLink value="Inicio" href="index.xhtml"></b:navLink>
-                <b:navLink value="Nosotros" href="nosotros.xthml"></b:navLink>
+                <b:navLink value="Inicio" outcome="index" ></b:navLink>
+                <b:navLink value="Nosotros" outcome="nosotros"></b:navLink>
                 <b:dropMenu value="Más información" iconAwesome="">
-                    <b:navLink value="Registro jugadores" href="registro.xhtml"></b:navLink>
-                    <b:navLink value="Ranking de jugadores" href="ranking.xhtml"></b:navLink>
-                   
+                    <b:navLink value="Registrarse " outcome="registro"></b:navLink>
+                    <b:navLink value="Ranking" outcome="ranking"></b:navLink>
+                    
                     <b:navLink></b:navLink>
-                    <b:navLink header="Nav header"></b:navLink>
-                    <b:navLink value="Separated link" href="#"></b:navLink>
-                    <b:dropMenu value="Nested submenu" iconAwesome="birthday-cake" iconAlign="right">
-                        <b:navLink value="You can nest menus" href="#"></b:navLink>
-                        <b:dropMenu value="Nested sub-submenu">
-                            <b:navLink value="... as deep as ..." href="#"></b:navLink>
-                            <b:dropMenu value="Nested sub-sub-submenu">
-                                <b:navLink value="... you want!" href="#"></b:navLink>
+                    <b:navLink header="Otros items"></b:navLink>
+                    <b:navLink value="En unfuturo" href="#"></b:navLink>
+                    <b:dropMenu value="En unfuturo"  iconAlign="right">
+                        <b:navLink value="En unfuturo" href="#"></b:navLink>
+                        <b:dropMenu value="En unfuturo">
+                            <b:navLink value="En unfuturo" href="#"></b:navLink>
+                            <b:dropMenu value="En unfuturo">
+                                <b:navLink value=".En unfuturo!" href="#"></b:navLink>
                             </b:dropMenu>
                         </b:dropMenu>
 
@@ -41,22 +47,23 @@
                 </b:column>
 
             </b:navbarLinks>
-        </b:navBar> 
-     
-        <b:modal id="amodal" title="Ingreso" styleClass="modalPseudoClass">
-             <h:form id="formularioLogin">
-                <b:growl  id="growlSpecific2" placementFrom="top" show-detail="true"
-                          global-only="false"
-                          show-summary="true" allow-dismiss="true"
-                          animation-enter="animated bounceInDown"
-                          animation-exit="animated flipOutX"
-                          escape="true" ></b:growl>
+        </b:navBar>
+       
+        
+            <b:modal id="amodal" title="Ingreso" styleClass="modalPseudoClass">
+                <h:form>
+                     <b:growl id="growlSpecific123456" placementFrom="top" show-detail="true"
+                                     global-only="false"
+                                     show-summary="true" allow-dismiss="true"
+                                     animation-enter="animated bounceInDown"
+                                     animation-exit="animated flipOutX"
+                                     escape="true" />
                 <b:inputText label="Documento" type="number" value="#{daoRol.documento}" />
                 <b:inputText type="password" label="Clave"  value="#{daoRol.clave}" />
-                    <b:button value="Cerrar" dismiss="modal" />
-                    <b:commandButton action="#{daoRol.login()}" value="Entrar" look="primary" update="@form" />
-           </h:form>
-        </b:modal>   
-        
+                <b:button value="Cerrar" dismiss="modal" />
+                <b:commandButton action="#{daoRol.login()}" value="Entrar" look="primary" />
+               </h:form>
+            </b:modal>   
+       
     </h:body>
 </html>

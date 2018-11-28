@@ -7,7 +7,7 @@ package com.tenniskiss.modelo;
 
 /**
  *
- * @author Luis Moreno
+ * @author jhon
  */
 public class Rol {
     private long documento;

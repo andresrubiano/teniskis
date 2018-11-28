@@ -16,15 +16,14 @@
     </h:head>
 
     <h:body>
-       <ui:include src="menu/menu.xhtml"  />
+        <ui:include src="menu/menu.xhtml"></ui:include>
+        <br></br>
+        <br></br>
+        <br></br>
+
         <b:container>
-            <h:form id="f2">
-                <b:growl  id="growlSpecific" placementFrom="top" show-detail="true"
-                          global-only="false"
-                          show-summary="true" allow-dismiss="true"
-                          animation-enter="animated bounceInDown"
-                          animation-exit="animated flipOutX"
-                          escape="true" ></b:growl>
+            <h:form>
+
                 <b:panel col-sm="12">
 
                     <div class="col-sm-6">
@@ -34,65 +33,74 @@
                             <b:badge style="margin-left:10px; background-color:#5cb85c" value="Usuario"  />
                         </f:facet>
 
-                      
 
-                            <b:carousel id="wizard" styleClass="wizardPseudoClass"
-                                        style="width:100%; "
-                                        startAnimation="false"
-                                        showIndicators="false"
-                                        wrap="false">
-                                <b:carouselItem style="width:100%; height:400px">
-                                    <b:panel title="Datos de identificación" look="success">
-                                        <b:inputText label="Documento" type="number" value="#{daoJugador.documento}" required="true" />
-                                        <b:inputText label="Nombre"  value="#{daoJugador.nombre}" required="true"/>
-                                        <b:inputText label="Apellido" value="#{daoJugador.apellido}" required="true"/>
-                                        <b:selectOneMenu value="#{daoJugador.sexo}"  required="true" label="Seleccione su sexo"    >
-                                            <f:selectItem itemLabel="(Seleccione una opción)" itemValue="" />
-                                            <f:selectItem itemLabel="Masculino" itemValue="M" />
-                                            <f:selectItem itemLabel="Femenino" itemValue="F" />
+                        <b:growl id="growlSpecific" placementFrom="top" show-detail="true"
+                                 global-only="false"
+                                 show-summary="true" allow-dismiss="true"
+                                 animation-enter="animated bounceInDown"
+                                 animation-exit="animated flipOutX"
+                                 escape="true" />
 
-                                        </b:selectOneMenu>
+                        <b:carousel id="wizard" styleClass="wizardPseudoClass"
+                                    style="width:100%; "
+                                    startAnimation="false"
+                                    showIndicators="false"
+                                    wrap="false">
+                            <b:carouselItem style="width:100%; height:400px">
+                                <b:panel title="Datos de identificación" look="success">
+                                    <b:inputText label="Documento" type="number" value="#{daoJugador.documento}" />
+                                    <b:inputText label="Nombre"  value="#{daoJugador.nombre}" />
+                                    <b:inputText label="Apellido" value="#{daoJugador.apellido}" />
+                                    <b:selectOneMenu value="#{daoJugador.sexo}"  required="true" label="Seleccione el torneo a participar"    >
+                                        <f:selectItem itemLabel="(Seleccione una opción)" itemValue="" />
+                                        <f:selectItem itemLabel="Masculino" itemValue="M" />
+                                        <f:selectItem itemLabel="Femenino" itemValue="F" />
 
+                                    </b:selectOneMenu>
+
+                                </b:panel>
+                            </b:carouselItem>
+                            <b:carouselItem style="width:100%;height:400px">
+                                <b:panel title="Ranking" look="success  ">
+                                    <b:inputText label="Nacionalidad"  value="#{daoJugador.nacionalidad}" />
+                                    <b:inputText label="Ranking Individual" type="number"  value="#{daoJugador.rankingIndividual}" />
+                                    <b:inputText label="Ranking Dobles" type="number"  value="#{daoJugador.rankingDobles}" />
+
+                                </b:panel>
+                            </b:carouselItem>
+                            <b:carouselItem style="width:100%;height:400px">
+                                <b:panel title="Evento a participar" look="success">
+                                    <b:inputText label="Numero del torneo a participar"  value="#{daoJugador.torneo}" />
+                                    <b:panel col-sm="12" style="overflow-y: scroll; height: 300px">
+                                        <b:dataTable value="#{daoTorneo.torneos}" 
+                                                     var="t" page-length-menu="5">
+                                            <b:dataTableColumn value="#{t.idTorneo}" label=" # Torneo"/>
+                                            <b:dataTableColumn value="#{t.nombre}" label="Nombre del torneo"/>
+                                            <b:dataTableColumn value="#{t.fechaInicio}" order="asc" label="Fecha Inicio" />
+                                            <b:dataTableColumn value="#{t.fechaFin}" order="asc"  label="Fecha fin" />
+                                        </b:dataTable>
                                     </b:panel>
-                                </b:carouselItem>
-                                <b:carouselItem style="width:100%;height:400px">
-                                    <b:panel title="Ranking" look="success  ">
-                                        <b:inputText label="Nacionalidad"  value="#{daoJugador.nacionalidad}"  required="true"/>
-                                        <b:inputText label="Ranking Individual" type="number"  value="#{daoJugador.rankingIndividual}" required="true" />
-                                        <b:inputText label="Ranking Dobles" type="number"  value="#{daoJugador.rankingDobles}" required="true"/>
-
-                                    </b:panel>
-                                </b:carouselItem>
-                                <b:carouselItem style="width:100%;height:400px">
-                                    <b:panel title="Evento a participar" look="success">
-
-                                        <b:selectOneMenu value="#{daoJugador.torneo}"  required="true" label="Seleccione el torneo a participar"    >
-                                            <f:selectItem itemLabel="(Seleccione una opción)" itemValue="" />
-                                            <f:selectItem itemLabel="" itemValue="1" />
-                                            <f:selectItem itemLabel="Honda" itemValue="2" />
-                                            <f:selectItem itemLabel="Opel" itemValue="3" />
-                                        </b:selectOneMenu>
 
 
-                                    </b:panel>
-                                </b:carouselItem>
-                                <b:carouselItem style="width:100%;height:400px">
-                                    <b:panel title="" look="success">
-                                        <b:commandButton value="Guardar" style="width: 100%" look="success" action="#{daoJugador.guardarJugador()}" update="@form"></b:commandButton>
-                                    </b:panel>
-                                </b:carouselItem>
-                                <b:carouselControl direction="right" >
-                                    <b:button value="Atras"
-                                              onclick="$('.wizardPseudoClass').carousel('prev');$('.wizardPseudoClass').carousel('pause');"
-                                              look="warning" />
-                                </b:carouselControl>
-                                <b:carouselControl direction="left">
-                                    <b:button value="Siguiente" style="position:absolute;right:0px"
-                                              onclick="$('.wizardPseudoClass').carousel('next');$('.wizardPseudoClass').carousel('pause');"
-                                              look="success" />
-                                </b:carouselControl>
-                            </b:carousel>
-                       
+                                </b:panel>
+                            </b:carouselItem>
+                            <b:carouselItem style="width:100%;height:400px;">
+                                <b:panel title="" look="success">
+                                    <b:commandButton value="Guardar" style="width: 100% " look="success" action="#{daoJugador.guardarJugador()}"></b:commandButton>
+                                </b:panel>
+                            </b:carouselItem>
+                            <b:carouselControl direction="right" >
+                                <b:button value="Atras" style="position: inherit;"
+                                          onclick="$('.wizardPseudoClass').carousel('prev');$('.wizardPseudoClass').carousel('pause');"
+                                          look="warning" />
+                            </b:carouselControl>
+                            <b:carouselControl direction="left">
+                                <b:button value="Siguiente" style="position:absolute;right:0px"
+                                          onclick="$('.wizardPseudoClass').carousel('next');$('.wizardPseudoClass').carousel('pause');"
+                                          look="success" />
+                            </b:carouselControl>
+                        </b:carousel>
+
 
                     </div>
                     <div class="col-sm-6">
@@ -102,6 +110,5 @@
 
             </h:form>
         </b:container>
-        
     </h:body>
 </html>

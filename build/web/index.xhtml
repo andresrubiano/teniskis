@@ -18,24 +18,18 @@
                 margin-right: 46px;
             }
             progress[value] {
-                /* Reset the default appearance */
+               
                 -webkit-appearance: none;
                 appearance: none;
-
                 width: 133px;
                 height: 15px;
             }
-            body{
-                background-image: url(carousel/1_1.jpg);
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
         </style>
     </h:head>
-    <h:body  >
-     
-        <ui:include src="menu/menu.xhtml"></ui:include>
-        
+    <h:body  style="background-color: #edefe2"> 
+       
+        <ui:include src="menu/menu.xhtml">          
+        </ui:include>
         <h:form id="carousel">
             <b:carousel id="parque" style="width:100%;">
                 <b:carouselItem>
@@ -84,7 +78,7 @@
 
             </b:row>
         </b:container>
-       
+        
     </h:body>
 
 </html>
